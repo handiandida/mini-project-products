@@ -10,7 +10,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
 import type { LoginPayload, User } from "../../types/auth.types";
-import { useAuthStore } from "./authStore";
+import { useAuthStore } from "../../store/authStore";
 
 const Login = () => {
   const [form, setForm] = useState<LoginPayload>({

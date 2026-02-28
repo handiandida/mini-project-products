@@ -7,7 +7,7 @@ import {
   CardMedia,
   Button,
 } from "@mui/material";
-import { getProductById } from "./productService";
+import { getProductById } from "../../services/productService";
 import type { Product } from "../../types/product.types";
 
 const ProductDetail = () => {

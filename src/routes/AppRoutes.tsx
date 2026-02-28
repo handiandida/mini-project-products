@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { useAuthStore } from "../features/auth/authStore";
+import { useAuthStore } from "../store/authStore";
 import Login from "../features/auth/Login";
 import MainLayout from "../components/layout/MainLayout";
 import ProtectedRoute from "./ProtectedRoute";

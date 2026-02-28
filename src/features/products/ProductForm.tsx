@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
 import { TextField, Button, Box } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
-import { addProduct, updateProduct, getProductById } from "./productService";
-import { useProductStore } from "./productStore";
+import {
+  addProduct,
+  updateProduct,
+  getProductById,
+} from "../../services/productService";
+import { useProductStore } from "../../store/productStore";
 import type { Product } from "../../types/product.types";
 
 const ProductForm = () => {

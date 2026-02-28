@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { Product } from "../../types/product.types";
+import type { Product } from "../types/product.types";
 
 interface ProductState {
   products: Product[];

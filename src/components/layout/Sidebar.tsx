@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useAuthStore } from "../../features/auth/authStore";
+import { useAuthStore } from "../../store/authStore";
 
 const drawerWidth = 240;
 

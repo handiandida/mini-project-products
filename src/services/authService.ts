@@ -1,5 +1,5 @@
-import api from "../../services/api";
-import type { LoginPayload, User } from "../../types/auth.types";
+import api from "./api";
+import type { LoginPayload, User } from "../types/auth.types";
 
 export const loginAPI = (payload: LoginPayload) =>
   api.post<User>("/auth/login", payload);

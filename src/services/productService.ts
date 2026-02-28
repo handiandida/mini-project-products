@@ -1,5 +1,5 @@
-import api from "../../services/api";
-import type { Product } from "../../types/product.types";
+import api from "./api";
+import type { Product } from "../types/product.types";
 
 interface ProductResponse {
   products: Product[];

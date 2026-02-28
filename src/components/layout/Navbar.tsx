@@ -1,5 +1,5 @@
 import { AppBar, Toolbar, Typography, Box, Avatar } from "@mui/material";
-import { useAuthStore } from "../../features/auth/authStore";
+import { useAuthStore } from "../../store/authStore";
 
 const Navbar = () => {
   const user = useAuthStore((state) => state.user);

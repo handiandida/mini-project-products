@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { Button, TextField, Box, CircularProgress, Chip } from "@mui/material";
 import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 import { useNavigate } from "react-router-dom";
-import { getProducts, deleteProduct } from "./productService";
-import { useProductStore } from "./productStore";
+import { getProducts, deleteProduct } from "../../services/productService";
+import { useProductStore } from "../../store/productStore";
+import ConfirmDialog from "../../components/common/ConfirmationDialog";
 
 const ProductList = () => {
   const navigate = useNavigate();
@@ -12,6 +13,9 @@ const ProductList = () => {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
   const [deletingId, setDeletingId] = useState<number | null>(null);
+
+  const [openConfirm, setOpenConfirm] = useState(false);
+  const [selectedId, setSelectedId] = useState<number | null>(null);
 
   useEffect(() => {
     if (products.length !== 0) return;
@@ -49,15 +53,17 @@ const ProductList = () => {
     }
   };
 
-  const handleDelete = async (id: number) => {
-    if (id > 194) return;
+  const handleConfirmDelete = async () => {
+    if (!selectedId) return;
 
     try {
-      setDeletingId(id);
-      await deleteProduct(id);
-      deleteProductLocal(id);
+      setDeletingId(selectedId);
+      await deleteProduct(selectedId);
+      deleteProductLocal(selectedId);
     } finally {
       setDeletingId(null);
+      setOpenConfirm(false);
+      setSelectedId(null);
     }
   };
 
@@ -106,7 +112,10 @@ const ProductList = () => {
               size="small"
               clickable
               disabled={!isServerProduct || deletingId === id}
-              onClick={() => handleDelete(id)}
+              onClick={() => {
+                setSelectedId(id);
+                setOpenConfirm(true);
+              }}
             />
           </Box>
         );
@@ -166,6 +175,16 @@ const ProductList = () => {
           </Box>
         )}
       </Box>
+
+      <ConfirmDialog
+        open={openConfirm}
+        onClose={() => {
+          setOpenConfirm(false);
+          setSelectedId(null);
+        }}
+        onConfirm={handleConfirmDelete}
+        loading={deletingId !== null}
+      />
     </Box>
   );
 };
